@@ -1,9 +1,9 @@
-import mongoose, { Document, Schema, PopulatedDoc, Types } from "mongoose";
+import mongoose, { Document, Schema, Types } from "mongoose";
 
 const taskStatus = {
     PENDING: 'pending',
     ON_HOLD: 'onHold',
-    IN_PROGRESS: 'inPRogress',
+    IN_PROGRESS: 'inProgress',
     UNDER_REVIEW: 'underReview',
     COMPLETE: 'completed'
 } as const
@@ -14,9 +14,10 @@ export interface ITask extends Document  {
     name: string
     description: string
     project: Types.ObjectId
+    status: TaskStatus
 }
 
-const ProjectSchema: Schema = new Schema ({
+const TaskSchema: Schema = new Schema ({
     name:{  
     type: String,
     trim: true,
@@ -39,5 +40,5 @@ const ProjectSchema: Schema = new Schema ({
     
 },{timestamps:true})
 
-const Task = mongoose.model<ITask>('Task',ProjectSchema)
+const Task = mongoose.model<ITask>('Task',TaskSchema)
 export default Task
