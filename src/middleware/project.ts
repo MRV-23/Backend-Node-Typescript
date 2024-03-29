@@ -19,7 +19,7 @@ export async function projectExist (req:Request, res: Response, next:NextFunctio
         await Promise.allSettled([  project =  Project.findById(id)])
         //const project = await Project.findById(id)
        //const project = await Project.findOne({_id:projecId})
-        console.log('projectname*****',project.name)
+        console.log('project',project)
         if (!project) {
             const error = new Error('Proyecto no encontrado')
             return res.status(404).json({error: error.message})
